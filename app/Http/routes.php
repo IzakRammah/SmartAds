@@ -17,8 +17,8 @@ Route::get('/', function () {
 
 Route::controllers(
 [
+    'user/password' => 'Auth\PasswordController',
     'user' => 'Auth\AuthController',
-    'password' => 'Auth\PasswordController',
 ]);
 
 Route::get('user', 'User\UserController@loggedin');

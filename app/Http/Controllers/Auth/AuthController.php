@@ -63,26 +63,19 @@ class AuthController extends Controller
     }
 
     /**
-    * Override 'RedirectsUsers' functions
-    */
+     * Override 'RedirectsUsers' functions
+     */
 
     /**
      * Get the post register / login redirect path.
      *
      * @return string
      */
-    public function redirectPath()
-    {
-        if (property_exists($this, 'redirectPath')) {
-            return $this->redirectPath;
-        }
-
-        return property_exists($this, 'redirectTo') ? $this->redirectTo : '/user';
-    }
+    protected $redirectTo = '/user';
 
     /**
-    * Override 'AuthenticatesUsers' functions
-    */
+     * Override 'AuthenticatesUsers' functions
+     */
 
     /**
      * Show the application login form.
@@ -99,14 +92,11 @@ class AuthController extends Controller
      *
      * @return string
      */
-    public function loginPath()
-    {
-        return property_exists($this, 'loginPath') ? $this->loginPath : '/user/login';
-    }
+    protected $loginPath = '/user/login';
 
     /**
-    * Override 'RegistersUsers' functions
-    */
+     * Override 'RegistersUsers' functions
+     */
 
     /**
      * Show the application registration form.
