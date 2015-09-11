@@ -41,6 +41,7 @@
         <div class="container">
             <div class="content">
                 <div class="title">Smart Ads</div>
+                <!-- Testing Sync -->
                 <div class="quote">{{ Inspiring::quote() }}</div>
             </div>
         </div>
