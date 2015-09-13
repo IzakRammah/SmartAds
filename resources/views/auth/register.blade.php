@@ -19,7 +19,8 @@
 						</div>
 					@endif
 
-					{!! Form::open(['url' => 'user/register', 'class' => 'form-horizontal']) !!}
+					<form id="register-form" class="form-horizontal" action="{{route('register')}}" method="post" role="form">
+						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						<div class="form-group">
 							<label class="col-md-4 control-label">Name</label>
 							<div class="col-md-6">
@@ -55,7 +56,7 @@
 								</button>
 							</div>
 						</div>
-					{!! Form::close() !!}
+              </form>
 				</div>
 			</div>
 		</div>

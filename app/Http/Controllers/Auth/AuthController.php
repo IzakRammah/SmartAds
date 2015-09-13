@@ -71,7 +71,7 @@ class AuthController extends Controller
      *
      * @return string
      */
-    protected $redirectTo = '/user';
+    protected $redirectTo = '/';
 
     /**
      * Override 'AuthenticatesUsers' functions
@@ -84,7 +84,7 @@ class AuthController extends Controller
      */
     public function getLogin()
     {
-        return view('user.login');
+        return view('auth.login');
     }
 
     /**
@@ -92,7 +92,7 @@ class AuthController extends Controller
      *
      * @return string
      */
-    protected $loginPath = '/user/login';
+    protected $loginPath = 'auth/login';
 
     /**
      * Override 'RegistersUsers' functions
@@ -105,6 +105,6 @@ class AuthController extends Controller
      */
     public function getRegister()
     {
-        return view('user.register');
+        return view('auth.register');
     }
 }

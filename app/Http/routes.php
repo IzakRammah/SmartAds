@@ -14,11 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::post('auth/register', ['as' => 'register', 'uses' => 'Auth\AuthController@postRegister']);
+Route::post('auth/login', ['as' => 'login', 'uses' => 'Auth\AuthController@postLogin']);
 Route::controllers(
 [
-    'user/password' => 'Auth\PasswordController',
-    'user' => 'Auth\AuthController',
+    'auth/password' => 'Auth\PasswordController',
+    'auth' => 'Auth\AuthController',
 ]);
 
-Route::get('user', 'User\UserController@loggedin');
+Route::get('auth', 'User\UserController@loggedin');

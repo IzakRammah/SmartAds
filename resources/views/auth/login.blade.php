@@ -19,7 +19,8 @@
 						</div>
 					@endif
 
-					{!! Form::open(['url' => 'user/login', 'class' => 'form-horizontal']) !!}
+					<form id="login-form" class="form-horizontal" action="{{route('login')}}" method="post" role="form">
+						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 						<div class="form-group">
@@ -55,7 +56,7 @@
 								<a href="../password/email">Forgot Your Password?</a>
 							</div>
 						</div>
-					{!! Form::close() !!}
+				</form>
 				</div>
 			</div>
 		</div>
