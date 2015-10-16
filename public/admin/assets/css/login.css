@@ -1,0 +1,13 @@
+input:focus {
+    border-color: #0aa699 !important;
+}
+.btn-submit{
+    font-size: 1.2em;
+    padding: 0.65em 1.3em;
+}
+.home-link{
+    font-weight: bold;
+}
+.home-link a:hover{
+    color: #0aa699;
+}

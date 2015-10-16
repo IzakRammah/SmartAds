@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class AuthController extends Controller
@@ -44,6 +46,7 @@ class AuthController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
+            'mobile' => 'required|min:10|unique:users|max:20',
         ]);
     }
 
@@ -58,6 +61,8 @@ class AuthController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'mobile' => $data['mobile'],
+            'permission' => 'user',
             'password' => bcrypt($data['password']),
         ]);
     }
@@ -84,7 +89,7 @@ class AuthController extends Controller
      */
     public function getLogin()
     {
-        return view('auth.login');
+        return view('login');
     }
 
     /**
@@ -92,7 +97,7 @@ class AuthController extends Controller
      *
      * @return string
      */
-    protected $loginPath = 'auth/login';
+    protected $loginPath = 'login';
 
     /**
      * Override 'RegistersUsers' functions
@@ -105,6 +110,38 @@ class AuthController extends Controller
      */
     public function getRegister()
     {
-        return view('auth.register');
+        return view('login');
+    }
+
+    public function postLogin(Request $request)
+    {
+        $this->validate($request, [
+            'email' => 'required|min:5', 'password' => 'required|min:5',
+        ]);
+        $credentials = $this->getCredentials($request);
+        if (Auth::attempt($credentials, $request->has('remember'))) {
+            return redirect()->intended($this->redirectPath());
+        }
+        $credentials["mobile"] = $credentials['email'];
+        unset($credentials['email']);
+        if (Auth::attempt($credentials, $request->has('remember'))) {
+            return redirect()->intended($this->redirectPath());
+        }
+        return redirect($this->loginPath())
+            ->withInput($request->only('email', 'remember'))
+            ->withErrors([
+                'email' => $this->getFailedLoginMessage(),
+            ]);
+    }
+
+    /**
+     * Get the needed authorization credentials from the request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
+    protected function getCredentials(Request $request)
+    {
+        return $request->only('email', 'password');
     }
 }

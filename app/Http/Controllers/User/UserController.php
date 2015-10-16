@@ -14,11 +14,11 @@ class UserController extends Controller
     {
         if (Auth::guest())
         {
-            return redirect('user/login');
+            return redirect('login');
         }
         else
         {
-            return view('user.index');
+            return view('index');
         }
     }
 }

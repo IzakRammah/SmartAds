@@ -1,0 +1,18 @@
+.compressed .navbar-nav > li > a {
+margin: 11px 20px !important;
+}
+.divider div{
+  margin-top: 22px;
+  height: 25px;
+  width: 2px;
+  background-color: white;
+}
+.nav .open>a, .nav .open>a:hover, .nav .open>a:focus{
+  background-color: inherit !important;
+  border-color: white !important;
+}
+.navbar-nav>li>.dropdown-menu{
+  width: auto;
+  right: auto;
+  left: 20px;
+}
