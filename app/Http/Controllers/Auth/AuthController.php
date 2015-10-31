@@ -47,6 +47,10 @@ class AuthController extends Controller
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
             'mobile' => 'required|min:10|unique:users|max:20',
+            'address' => 'required|max:128',
+            'country' => 'required|max:64',
+            'city' => 'required|max:64',
+            'security_code' => 'required|size:4',
         ]);
     }
 
@@ -61,9 +65,13 @@ class AuthController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'password' => bcrypt($data['password']),
             'mobile' => $data['mobile'],
             'permission' => 'user',
-            'password' => bcrypt($data['password']),
+            'address' => $data['address'],
+            'country' => $data['country'],
+            'city' => $data['city'],
+            'security_code' => $data['security_code']
         ]);
     }
 
@@ -122,7 +130,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials, $request->has('remember'))) {
             return redirect()->intended($this->redirectPath());
         }
-        $credentials["mobile"] = $credentials['email'];
+        $credentials['mobile'] = $credentials['email'];
         unset($credentials['email']);
         if (Auth::attempt($credentials, $request->has('remember'))) {
             return redirect()->intended($this->redirectPath());
