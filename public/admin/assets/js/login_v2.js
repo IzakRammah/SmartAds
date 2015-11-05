@@ -1,6 +1,6 @@
-/* Webarch Admin Dashboard 
------------------------------------------------------------------*/ 
-$(document).ready(function() {		
+/* Webarch Admin Dashboard
+-----------------------------------------------------------------*/
+$(document).ready(function() {
 	$('#login_toggle').click(function(){
 		$('#frm_login').show();
 		$('#frm_register').hide();
@@ -9,14 +9,21 @@ $(document).ready(function() {
 		$('#frm_login').hide();
 		$('#frm_register').show();
 	})
-	
+
 	$(".lazy").lazyload({
       effect : "fadeIn"
    });
-	
+
+	$(document).ready(function () {
+		$('#list').chosen();
+	});
+	$('[data-toggle="tooltip"]').tooltip({
+		placement: 'right'
+	});
+
 	$('#login-form').validate({
 
-                focusInvalid: false, 
+                focusInvalid: false,
                 ignore: "",
                 rules: {
                     txtusername: {
@@ -29,30 +36,30 @@ $(document).ready(function() {
                 },
 
                 invalidHandler: function (event, validator) {
-					//display error alert on form submit    
+					//display error alert on form submit
                 },
 
-                errorPlacement: function (label, element) { // render error placement for each input type   
+                errorPlacement: function (label, element) { // render error placement for each input type
 					$('<span class="error"></span>').insertAfter(element).append(label)
                     var parent = $(element).parent('.input-with-icon');
-                    parent.removeClass('success-control').addClass('error-control');  
+                    parent.removeClass('success-control').addClass('error-control');
                 },
 
                 highlight: function (element) { // hightlight error inputs
-					
+
                 },
 
                 unhighlight: function (element) { // revert the change done by hightlight
-                    
+
                 },
 
                 success: function (label, element) {
 					var parent = $(element).parent('.input-with-icon');
-					parent.removeClass('error-control').addClass('success-control'); 
+					parent.removeClass('error-control').addClass('success-control');
                 },
 			    submitHandler: function(form) {
 						form.submit();
 				}
-            });	
+            });
 
 });

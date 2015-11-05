@@ -11,3 +11,13 @@ input:focus {
 .home-link a:hover{
     color: #0aa699;
 }
+#testing_icon{
+    position: relative;
+}
+#testing_icon .fa{
+    position: absolute;
+    top:7px;
+    right:10px;
+    font-size: 25px;
+    color:gray;
+}
