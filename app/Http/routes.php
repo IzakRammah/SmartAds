@@ -30,6 +30,8 @@ Route::group(['middleware' => 'App\Http\Middleware\ControlMiddleware'], function
 	Route::get('cpanel', ['as' => 'cpanel', function(){
 		return view('user.cpanel');
 	}]);
+	Route::get('profile', ['as' => 'profile_show', 'uses' => 'User\UserController@show']);
+	Route::post('profile/{id}', ['as' => 'profile_update', 'uses' => 'User\UserController@update']);
 });
 Route::controllers(
 [
