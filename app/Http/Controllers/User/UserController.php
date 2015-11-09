@@ -14,7 +14,7 @@ class UserController extends Controller
 	public function show()
 	{
 		$user = Auth::User();
-		return view('user.profile', compact('user'));
+		return view('admin.profile', compact('user'));
 	}
 
 	public function update(Request $request, $id)
